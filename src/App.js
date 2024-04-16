@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+/**import React from 'react';*/
+/** CSS Forms */
+import React, { useState } from 'react';
+import './componentes/clientes/CSSForms.css';
+/**LoginForm */
+import LoginForm from './componentes/clientes/LoginForm';
+/**RegisterForm */
+import RegisterForm from './componentes/clientes/RegisterForm';
+
 
 function App() {
+  const [isRegisterFormVisible, setIsRegisterFormVisible] = useState(true);
+
+  const toggleForm = () => {
+      setIsRegisterFormVisible(!isRegisterFormVisible);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+          <div className="container">
+              {isRegisterFormVisible ? (
+                  <RegisterForm toggleForm={toggleForm} />
+              ) : (
+                  <LoginForm toggleForm={toggleForm} />
+              )}
+          </div>
+      </>
   );
 }
 
